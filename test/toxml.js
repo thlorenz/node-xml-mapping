@@ -74,21 +74,21 @@ exports['t03b'] = function (test) {
 }
 exports['t03c'] = function (test) {
 	input = {
-		key : [{ $t : 'value'}, { $text : 'value'}, { '#text' : 'value'}]
+		key : [{ __t : 'value'}, { __text : 'value'}, { '#text' : 'value'}]
 	};
 	test.equal(XMLMapping.dump(input), '<key>value</key><key>value</key><key>value</key>');
 	test.done();
 };
 exports['t03d'] = function (test) {
 	input = {
-		key : [{ $c : 'value'}, { '#comment' : 'value'}, { '$comment' : 'value'}]
+		key : [{ __c : 'value'}, { '#comment' : 'value'}, { '__comment' : 'value'}]
 	};
 	test.equal(XMLMapping.dump(input), '<key><!--value--></key><key><!--value--></key><key><!--value--></key>');
 	test.done();
 };
 exports['t03e'] = function (test) {
 	input = {
-		key : [{ $cd : 'value'}, { '#cdata' : 'value'}, { '$cdata' : 'value'}]
+		key : [{ __cd : 'value'}, { '#cdata' : 'value'}, { '__cdata' : 'value'}]
 	};
 	test.equal(XMLMapping.dump(input), '<key><![CDATA[value]]></key><key><![CDATA[value]]></key><key><![CDATA[value]]></key>');
 	test.done();
@@ -97,7 +97,7 @@ exports['t03e'] = function (test) {
 
 exports['t04a'] = function (test) {
 	input = {
-		$t : 'value'
+		__t : 'value'
 	};
 	test.equal(XMLMapping.dump(input), '');
 	test.done();
@@ -111,7 +111,7 @@ exports['t04b'] = function (test) {
 };
 exports['t05a'] = function (test) {
 	input = {
-		'#element' : [{ $cd : 'value'}, { '#cd' : 'value'}]
+		'#element' : [{ __cd : 'value'}, { '#cd' : 'value'}]
 	};
 	test.equal(XMLMapping.dump(input), '<![CDATA[value]]><![CDATA[value]]>'); 
 	test.done();
@@ -119,7 +119,7 @@ exports['t05a'] = function (test) {
 exports['t05b'] = function (test) {
 	input = {
 		key : {
-			'#element' : [{ $t : 'amstra'}, { _t : 'mdram'}]
+			'#element' : [{ __t : 'amstra'}, { _t : 'mdram'}]
 		}
 	};
 	test.equal(XMLMapping.dump(input), '<key>amstramdram</key>'); 
@@ -128,13 +128,13 @@ exports['t05b'] = function (test) {
 exports['t06'] = function (test) {
 	input = {
 		key : {
-			'$t' : 1
+			'__t' : 1
 		}
 	};
 	test.equal(XMLMapping.dump(input), '<key>1</key>'); 
 		input = {
 		key : {
-			'$t' : 0
+			'__t' : 0
 		}
 	};
 	test.equal(XMLMapping.dump(input), '<key>0</key>'); 
@@ -143,7 +143,7 @@ exports['t06'] = function (test) {
 exports['t07'] = function (test) {
 	input = {
 		key: {
-			$t: "value",
+			__t: "value",
 			arg: "arg"
 		}
 	};
@@ -155,7 +155,7 @@ exports['t08'] = function (test) {
 		key: {
 			a: "a",
 			val: {
-				$t: "val"
+				__t: "val"
 			},
 			c: "c"
 		}
@@ -168,7 +168,7 @@ exports['t09'] = function (test) {
 		key: {
 			a: "a",
 			val: {
-				$t: "val"
+				__t: "val"
 			},
 			c: "c"
 		}
